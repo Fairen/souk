@@ -107,7 +107,7 @@ export function resolveTemplate(spec: string): ResolvedTemplate {
     );
   }
 
-  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "souk-tpl-"));
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "agpo-tpl-"));
   const args = ["clone", "--depth", "1"];
   if (git.ref) args.push("--branch", git.ref);
   args.push(git.cloneUrl, tmp);

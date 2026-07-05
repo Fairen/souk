@@ -76,7 +76,7 @@ export async function initCommand(
   dirArg: string | undefined,
   opts: InitOptions,
 ): Promise<void> {
-  p.intro(pc.bgCyan(pc.black("  souk init  ")));
+  p.intro(pc.bgCyan(pc.black("  agpo init  ")));
 
   const targetDir = path.resolve(dirArg ?? ".");
   const defaultName = path
@@ -302,8 +302,8 @@ export async function initCommand(
       remote
         ? `git remote add origin ${remote.httpsUrl}  # if not already set`
         : "git remote add origin <your-git-url>",
-      "souk add skill my-first-skill",
-      "souk validate",
+      "agpo add skill my-first-skill",
+      "agpo validate",
       "git add -A && git commit -m 'feat: initial marketplace'",
       "git push -u origin main",
       "",
@@ -318,7 +318,7 @@ export async function initCommand(
     p.log.warn(
       `Recorded tier 2/3 target(s) in metadata.targets: ${needBuild.map((id) => getAdapter(id)?.label).join(", ")}.\n` +
         "These are NOT installable from the Claude catalog alone — they need generated per-agent artifacts. " +
-        "souk records the intent and documents it; artifact generation (`souk build --target …`) is not implemented yet. " +
+        "agpo records the intent and documents it; artifact generation (`agpo build --target …`) is not implemented yet. " +
         "See README install notes.",
     );
   }

@@ -10,7 +10,7 @@ import type { RemoteInfo } from "./git.js";
  *  - Tier 3 (transform): needs per-plugin transformed file trees. → Gemini/
  *    Antigravity, OpenCode, Kiro.
  *
- * `souk init` fully wires Tier 1. For Tier 2/3 it records the target in
+ * `agpo init` fully wires Tier 1. For Tier 2/3 it records the target in
  * `metadata.targets` and emits docs, but defers artifact GENERATION to a
  * dedicated build step, because those registries must be kept fresh by every
  * lifecycle command (add/sync/bump) — an ongoing build concern, not an init one.
@@ -69,7 +69,7 @@ const codex: AgentAdapter = {
   tier: 2,
   install: (arg) => ({
     lines: [`codex marketplace add ${arg}`],
-    note: "Requires a Codex registry (.agents/plugins/marketplace.json). Generate it with `souk build --target codex` (planned); the Claude catalog alone is not read by Codex.",
+    note: "Requires a Codex registry (.agents/plugins/marketplace.json). Generate it with `agpo build --target codex` (planned); the Claude catalog alone is not read by Codex.",
   }),
 };
 
@@ -79,7 +79,7 @@ const cursor: AgentAdapter = {
   tier: 2,
   install: () => ({
     lines: ["# add the marketplace in Cursor, then: /plugin install <plugin-name>"],
-    note: "Requires a committed Cursor registry (.cursor-plugin/). Generate it with `souk build --target cursor` (planned).",
+    note: "Requires a committed Cursor registry (.cursor-plugin/). Generate it with `agpo build --target cursor` (planned).",
   }),
 };
 
@@ -89,7 +89,7 @@ const gemini: AgentAdapter = {
   tier: 3,
   install: () => ({
     lines: ["gemini extensions install ."],
-    note: "Needs a transformed tree (gemini-extension.json + GEMINI.md) via `souk build --target gemini` (planned). Note: Gemini CLI is being retired (2026-06-18) in favour of Antigravity CLI (`agy`).",
+    note: "Needs a transformed tree (gemini-extension.json + GEMINI.md) via `agpo build --target gemini` (planned). Note: Gemini CLI is being retired (2026-06-18) in favour of Antigravity CLI (`agy`).",
   }),
 };
 
@@ -99,7 +99,7 @@ const opencode: AgentAdapter = {
   tier: 3,
   install: () => ({
     lines: ["# clone the repo, then generate the OpenCode tree (.opencode/)"],
-    note: "Needs a transformed tree via `souk build --target opencode` (planned). OpenCode reads AGENTS.md natively for context.",
+    note: "Needs a transformed tree via `agpo build --target opencode` (planned). OpenCode reads AGENTS.md natively for context.",
   }),
 };
 
@@ -109,7 +109,7 @@ const kiro: AgentAdapter = {
   tier: 3,
   install: () => ({
     lines: ["# install the generated root artifact (POWER.md, .kiro/)"],
-    note: "Needs a transformed tree via `souk build --target kiro` (planned).",
+    note: "Needs a transformed tree via `agpo build --target kiro` (planned).",
   }),
 };
 
@@ -188,7 +188,7 @@ export function renderAgentsMd(marketplaceName: string, description: string, age
 
 ${description}
 
-This repository is a plugin marketplace managed with [souk](https://www.npmjs.com/package/souk).
+This repository is a plugin marketplace managed with [agpo](https://www.npmjs.com/package/agpo).
 The catalog lives in \`.claude-plugin/marketplace.json\`; each plugin lives under \`plugins/<name>/\`.
 
 Target agents: ${labels}.
@@ -196,7 +196,7 @@ Target agents: ${labels}.
 ## For agents working in this repo
 
 - Plugins are self-contained under \`plugins/<name>/\` with a \`.claude-plugin/plugin.json\` manifest and \`skills/\`, \`commands/\`, \`agents/\`, \`hooks/\` as needed.
-- After changing a plugin, run \`souk sync\` to reconcile the catalog and \`souk validate\` before committing.
-- Version a plugin with \`souk bump <plugin>\` (conventional-commit aware).
+- After changing a plugin, run \`agpo sync\` to reconcile the catalog and \`agpo validate\` before committing.
+- Version a plugin with \`agpo bump <plugin>\` (conventional-commit aware).
 `;
 }

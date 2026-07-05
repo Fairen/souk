@@ -38,7 +38,7 @@ export async function addPlugin(
   const root = findMarketplaceRoot(startDir);
   if (!root) {
     p.log.error(
-      "No .claude-plugin/marketplace.json found here or in any parent directory. Run `souk init` first.",
+      "No .claude-plugin/marketplace.json found here or in any parent directory. Run `agpo init` first.",
     );
     process.exitCode = 1;
     return;

@@ -14,8 +14,8 @@ export interface SyncOptions {
   quiet?: boolean;
 }
 
-const README_START = "<!-- souk:plugins:start -->";
-const README_END = "<!-- souk:plugins:end -->";
+const README_START = "<!-- agpo:plugins:start -->";
+const README_END = "<!-- agpo:plugins:end -->";
 
 /**
  * Reconcile marketplace.json with the plugins on disk.
@@ -24,7 +24,7 @@ const README_END = "<!-- souk:plugins:end -->";
  * - Updates version/description/author drifted from the manifest
  * - Warns about catalog entries whose local source no longer exists
  *   (remote sources — github/url/git-subdir/npm — are left untouched)
- * - Regenerates the plugin table in README.md between souk markers
+ * - Regenerates the plugin table in README.md between agpo markers
  */
 export async function syncCommand(
   startDir: string,
@@ -32,7 +32,7 @@ export async function syncCommand(
 ): Promise<void> {
   const root = findMarketplaceRoot(startDir);
   if (!root) {
-    p.log.error("No .claude-plugin/marketplace.json found. Run `souk init` first.");
+    p.log.error("No .claude-plugin/marketplace.json found. Run `agpo init` first.");
     process.exitCode = 1;
     return;
   }
@@ -92,7 +92,7 @@ export async function syncCommand(
     if (start !== -1 && end !== -1 && end > start) {
       const table =
         mp.plugins.length === 0
-          ? "_No plugins yet. Add one with `souk add <template> <name>`._"
+          ? "_No plugins yet. Add one with `agpo add <template> <name>`._"
           : [
               "| Plugin | Version | Description |",
               "| :----- | :------ | :---------- |",

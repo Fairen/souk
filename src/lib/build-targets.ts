@@ -102,7 +102,7 @@ export function generateCodex(ctx: BuildContext): GeneratedFile[] {
 
 export type Tier2Generator = (ctx: BuildContext) => GeneratedFile[];
 
-/** Tier-2 targets souk can generate. Keyed by agent id. */
+/** Tier-2 targets agpo can generate. Keyed by agent id. */
 export const TIER2_GENERATORS: Record<string, Tier2Generator> = {
   cursor: generateCursor,
   codex: generateCodex,

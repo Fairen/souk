@@ -10,7 +10,7 @@ import { validateCommand } from "./commands/validate.js";
 const program = new Command();
 
 program
-  .name("souk")
+  .name("agpo")
   .description(
     "Scaffold and manage plugin marketplaces for Claude Code and GitHub Copilot, distributed via any Git host.",
   )
@@ -34,7 +34,7 @@ program
 
 program
   .command("add")
-  .argument("[template]", "template name, local path, gh:/gl: shorthand, or git URL (see `souk list`)")
+  .argument("[template]", "template name, local path, gh:/gl: shorthand, or git URL (see `agpo list`)")
   .argument("[name]", "plugin name (kebab-case)")
   .description("Scaffold a plugin from a template and register it in the catalog")
   .option("-d, --description <text>", "one-line plugin description")

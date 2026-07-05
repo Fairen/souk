@@ -110,7 +110,7 @@ export async function bumpCommand(
 ): Promise<void> {
   const root = findMarketplaceRoot(startDir);
   if (!root) {
-    p.log.error("No .claude-plugin/marketplace.json found. Run `souk init` first.");
+    p.log.error("No .claude-plugin/marketplace.json found. Run `agpo init` first.");
     process.exitCode = 1;
     return;
   }
