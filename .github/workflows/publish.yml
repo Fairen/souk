@@ -16,7 +16,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
+          # Vitest 4 in the pre-publish gate needs Node >= 20.12; the
+          # published CLI still supports Node 18 at runtime (engines >=18).
+          node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
 
